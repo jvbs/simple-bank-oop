@@ -29,7 +29,7 @@ namespace SimpleBankOOP.Classes
                     TelaCriarConta();
                     break;
                 case 2:
-                    Console.WriteLine("2");
+                    TelaLogin();
                     break;
                 default:
                     Console.WriteLine("Opção inválida.");
@@ -56,5 +56,24 @@ namespace SimpleBankOOP.Classes
 
             Console.WriteLine("===============================================");
         }
+
+        private static void TelaLogin()
+        {
+            Console.Clear();
+
+            Console.WriteLine("          === Simple Bank OOP ===              ");
+            Console.WriteLine("                                               ");
+            Console.WriteLine("===============================================");
+            Console.WriteLine("          Digite o seu CPF:                    ");
+            string cpf = Console.ReadLine();
+
+            Console.WriteLine("===============================================");
+            Console.WriteLine("          Digite sua senha:                    ");
+            string senha = Console.ReadLine();
+
+            Console.WriteLine("===============================================");
+        }
+
+
     }
 }
