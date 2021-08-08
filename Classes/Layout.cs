@@ -1,10 +1,12 @@
 using System;
+using System.Collections.Generic;
 
 namespace SimpleBankOOP.Classes
 {
     public class Layout
     {
         private static int opcao = 0;
+        private static List<Pessoa> pessoas = new List<Pessoa>();
         public static void TelaPrincipal()
         {
             // Console.BackgroundColor = ConsoleColor.DarkBlue;
@@ -55,6 +57,22 @@ namespace SimpleBankOOP.Classes
             string senha = Console.ReadLine();
 
             Console.WriteLine("===============================================");
+
+            ContaCorrente contaCorrente = new ContaCorrente();
+            Pessoa pessoa = new Pessoa();
+
+            pessoa.SetNome(nome);
+            pessoa.SetCpf(cpf);
+            pessoa.SetSenha(senha);
+            pessoa.Conta = contaCorrente;
+
+            pessoas.Add(pessoa);
+
+            Console.Clear();
+            Console.WriteLine("===============================================");
+            Console.WriteLine("          Conta criada com sucesso.            ");
+            Console.WriteLine("===============================================");
+
         }
 
         private static void TelaLogin()
