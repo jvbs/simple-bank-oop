@@ -6,7 +6,7 @@ namespace SimpleBankOOP.Classes
     {
         public Conta()
         {
-            this.NumeroConta = "0001";
+            this.Agencia = "0001";
             NumeroContaSequencial++;
         }
 

@@ -1,5 +1,7 @@
 using System;
 using System.Collections.Generic;
+using System.Linq;
+using System.Threading;
 
 namespace SimpleBankOOP.Classes
 {
@@ -9,8 +11,6 @@ namespace SimpleBankOOP.Classes
         private static List<Pessoa> pessoas = new List<Pessoa>();
         public static void TelaPrincipal()
         {
-            // Console.BackgroundColor = ConsoleColor.DarkBlue;
-            // Console.ForegroundColor = ConsoleColor.White;
 
             Console.Clear();
 
@@ -73,6 +73,10 @@ namespace SimpleBankOOP.Classes
             Console.WriteLine("          Conta criada com sucesso.            ");
             Console.WriteLine("===============================================");
 
+            Thread.Sleep(1000);
+
+            TelaContaLogada(pessoa);
+
         }
 
         private static void TelaLogin()
@@ -90,8 +94,78 @@ namespace SimpleBankOOP.Classes
             string senha = Console.ReadLine();
 
             Console.WriteLine("===============================================");
+
+            Pessoa pessoa = pessoas.FirstOrDefault(
+                pessoa => pessoa.CPF == cpf && pessoa.Senha == senha
+            );
+
+            if (pessoa != null)
+            {
+                TelaBoasVindas(pessoa);
+                TelaContaLogada(pessoa);
+            }
+            else
+            {
+                Console.Clear();
+
+                Console.WriteLine("===============================================");
+                Console.WriteLine("          Pessoa não cadastrada.               ");
+                Console.WriteLine("===============================================");
+            }
         }
 
+        private static void TelaBoasVindas(Pessoa pessoa)
+        {
+            string msgTelaBemVindo =
+                $"{pessoa.Nome} | " +
+                $"Banco: {pessoa.Conta.GetCodigoBanco()} | " +
+                $"Agência: {pessoa.Conta.GetAgencia()} | " +
+                $"Conta: {pessoa.Conta.GetConta()}";
+
+
+            Console.WriteLine($"Seja bem-vindo(a), {msgTelaBemVindo}");
+        }
+
+        private static void TelaContaLogada(Pessoa pessoa)
+        {
+            Console.Clear();
+
+            TelaBoasVindas(pessoa);
+
+            Console.WriteLine("===============================================");
+            Console.WriteLine("          Digite a opção desejada.             ");
+            Console.WriteLine("===============================================");
+            Console.WriteLine("          1 - Realizar um depósito.            ");
+            Console.WriteLine("          2 - Realizar um saque.               ");
+            Console.WriteLine("          3 - Consultar saldo.                 ");
+            Console.WriteLine("          4 - Extrato.                         ");
+            Console.WriteLine("          5 - Sair.                            ");
+
+            opcao = int.Parse(Console.ReadLine());
+
+            switch (opcao)
+            {
+                case 1:
+                    break;
+                case 2:
+                    break;
+                case 3:
+                    break;
+                case 4:
+                    break;
+                case 5:
+                    TelaPrincipal();
+                    break;
+                default:
+                    Console.Clear();
+                    Console.WriteLine("===============================================");
+                    Console.WriteLine("          Opção inválida.                      ");
+                    Console.WriteLine("===============================================");
+                    break;
+            }
+
+
+        }
 
     }
 }
