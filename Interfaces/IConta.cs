@@ -1,3 +1,6 @@
+using SimpleBankOOP.Classes;
+using System.Collections.Generic;
+
 namespace SimpleBankOOP.Interfaces
 {
     public interface IConta
@@ -8,6 +11,7 @@ namespace SimpleBankOOP.Interfaces
         string GetCodigoBanco();
         string GetAgencia();
         string GetConta();
+        List<Extrato> Extrato();
 
     }
 }

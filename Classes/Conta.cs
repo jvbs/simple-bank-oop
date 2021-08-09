@@ -1,3 +1,5 @@
+using System;
+using System.Collections.Generic;
 using SimpleBankOOP.Interfaces;
 
 namespace SimpleBankOOP.Classes
@@ -8,12 +10,15 @@ namespace SimpleBankOOP.Classes
         {
             this.Agencia = "0001";
             NumeroContaSequencial++;
+            this.Movimentacoes = new List<Extrato>();
         }
 
         public double Saldo { get; protected set; }
         public string Agencia { get; private set; }
         public string NumeroConta { get; protected set; }
         public static int NumeroContaSequencial { get; private set; }
+        private List<Extrato> Movimentacoes;
+
         public double ConsultarSaldo()
         {
             return this.Saldo;
@@ -21,6 +26,7 @@ namespace SimpleBankOOP.Classes
 
         public void Depositar(double valor)
         {
+            this.Movimentacoes.Add(new Extrato(DateTime.Now, "Depósito", valor));
             this.Saldo += valor;
         }
 
@@ -30,6 +36,8 @@ namespace SimpleBankOOP.Classes
             {
                 return false;
             }
+
+            this.Movimentacoes.Add(new Extrato(DateTime.Now, "Saque", -valor));
 
             this.Saldo -= valor;
             return true;
@@ -48,6 +56,11 @@ namespace SimpleBankOOP.Classes
         public string GetConta()
         {
             return this.NumeroConta;
+        }
+
+        public List<Extrato> Extrato()
+        {
+            return this.Movimentacoes;
         }
     }
 }
